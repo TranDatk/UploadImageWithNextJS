@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleLogin = () => {
-    router.push("/upload");
+    router.push("/api/upload");
   };
 
   return (
