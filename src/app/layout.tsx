@@ -16,9 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <header>
+      <head>
         <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/learningenglishapp-1e3bd.appspot.com/o/307574884_1455542958269820_1690643069123081125_n.jpg?alt=media&token=a35ebf80-feb2-4259-8649-43e014fe6190" type="image/x-icon" sizes="any" />
-      </header>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
