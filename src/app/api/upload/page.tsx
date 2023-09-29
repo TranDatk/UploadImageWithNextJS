@@ -2,24 +2,29 @@
 
 import { useEffect } from 'react';
 import AppTable from '@/app/components/app.table';
+import React from "react";
+import useSWR from "swr";
+import CreateModal from '@/app/components/create.modal';
 
 export default function Upload() {
-
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('http://localhost:8000/blogs');
-      const data = await res.json();
-      console.log("Check : ", data)
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, error, isLoading } = useSWR(
+    "http://localhost:8000/blogs",
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false
     }
-    fetchData();
-  }, [])
+  );
+  if (!data) {
+    return <div>loading...</div>;
+  }
 
   return (
     <>
       <div className='container mx-auto px-4'>
-        <AppTable />
+        <AppTable blogs={data} />
       </div>
     </>
   )

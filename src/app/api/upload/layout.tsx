@@ -9,10 +9,10 @@ export default function UploadLayout({
 }) {
   
   return (
-    <div>
+    <>
       <AppHeader />
-      <div className='container'>{children}</div>
+      {children}
       <AppFooter />
-    </div>
+    </>
   );
 }
