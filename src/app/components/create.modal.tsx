@@ -1,6 +1,7 @@
 import { Fragment, use, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ArrowUpOnSquareIcon } from '@heroicons/react/24/outline'
+import { toast } from 'react-toastify';
 
 
 interface Iprops {
@@ -17,9 +18,39 @@ export default function CreateModal(props: Iprops) {
     const [author, setAuthor] = useState<string>("");
 
     const [content, setContent] = useState<string>("");
-    
+
     const handleSubmit = () => {
-        console.log("check data: ", title, author, content);
+        if(!title) {
+            toast.error("Empty title");
+            return;
+        }
+        if(!author) {
+            toast.error("Empty author");
+            return;
+        }
+        if(!content) {
+            toast.error("Empty content");
+            return;
+        }
+        fetch('http://localhost:8000/blogs', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, author, content })
+        }).then(res => res.json())
+            .then(res => {
+                if(res){
+                    toast.success("Create succeed");
+                    handleCloseModal();
+                }else{
+                    toast.error("Create error");
+                }
+            });
+
+        // toast.success("Create succeed");
+        // console.log("check data: ", title, author, content);
     }
 
     const handleCloseModal = () => {
@@ -53,8 +84,7 @@ export default function CreateModal(props: Iprops) {
                             enterTo="opacity-100 translate-y-0 sm:scale-100"
                             leave="ease-in duration-200"
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        >
+                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                             <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                     <div className="sm:flex sm:justify-between w-full">

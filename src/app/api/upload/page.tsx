@@ -24,7 +24,7 @@ export default function Upload() {
   return (
     <>
       <div className='container mx-auto px-4'>
-        <AppTable blogs={data} />
+        <AppTable blogs={data?.sort((a: any , b: any)=> b.id - a.id) } />
       </div>
     </>
   )

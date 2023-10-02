@@ -32,19 +32,18 @@ const AppTable = (props: IProps) => {
           Add
         </button>
       </div>
-      <div className="flex flex-col w-11/12 mx-auto">
+      <div className="flex flex-col mx-auto w-full">
         <div className="sm:-mx-6 lg:-mx-8">
-          <div className="inline-block py-2 sm:px-6 lg:px-8">
+          <div className="inline-block py-2 sm:px-6 lg:px-8 w-full ">
             <div className="overflow-x-auto">
-              <table className="text-center text-sm font-light">
+              <table className="text-center text-sm font-light  mx-auto w-full">
                 <thead
                   className="border-b bg-orange-500 p-6 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                   <tr>
-                    <th scope="col" className=" px-6 py-4">STT</th>
-                    <th scope="col" className=" px-6 py-4 w-2/6">Content</th>
-                    <th scope="col" className=" px-6 py-4">Author</th>
-                    <th scope="col" className=" px-6 py-4 w-1/12">Title</th>
-                    <th scope="col" className=" px-6 py-4">Action</th>
+                    <th scope="col" className=" px-6 py-4 w-auto">STT</th>
+                    <th scope="col" className=" px-6 py-4 w-auto">Author</th>
+                    <th scope="col" className=" px-6 py-4 w-auto">Title</th>
+                    <th scope="col" className=" px-6 py-4 w-auto">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -52,9 +51,6 @@ const AppTable = (props: IProps) => {
                     return (
                       <tr key={blog.id} className="border-b dark:border-neutral-500">
                         <td className="px-6 py-4 font-medium w-1/10">{blog.id}</td>
-                        <td className=" px-6 py-4 w-2/6">
-                          {blog.content}
-                        </td>
                         <td className="px-6 py-4 w-1/10">{blog.author}</td>
                         <td className="px-6 py-4 w-1/10">{blog.title}</td>
                         <td className="mx-6 py-4 ">
